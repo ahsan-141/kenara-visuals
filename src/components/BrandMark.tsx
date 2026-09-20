@@ -5,13 +5,13 @@ export function BrandMark({
   symbolTone = 'primary',
 }: {
   className?: string
-  symbolTone?: 'primary' | 'foreground'
+  symbolTone?: 'primary' | 'white'
 }) {
   return (
     <span className={cn('inline-flex items-center gap-3', className)}>
       <span
         aria-hidden="true"
-        className={cn('h-9 w-6 shrink-0', symbolTone === 'foreground' ? 'bg-foreground' : 'bg-primary')}
+        className={cn('h-9 w-6 shrink-0', symbolTone === 'white' ? 'bg-logo-mark' : 'bg-primary')}
         style={{
           WebkitMaskImage: "url('/assets/kenara-symbol.webp')",
           WebkitMaskPosition: 'center',

@@ -27,6 +27,7 @@
   --color-ring: var(--ring);
   --color-paper: var(--paper);
   --color-paper-foreground: var(--paper-foreground);
+  --color-logo-mark: var(--logo-mark);
   --radius-sm: calc(var(--radius) - 0.25rem);
   --radius-md: calc(var(--radius) - 0.125rem);
   --radius-lg: var(--radius);
@@ -56,6 +57,7 @@
   --ring: #ddb19a;
   --paper: #eee7dc;
   --paper-foreground: #1a1512;
+  --logo-mark: #ffffff;
   color-scheme: dark;
   font-synthesis: none;
   text-rendering: optimizeLegibility;

@@ -12,7 +12,7 @@ export function FlowHeader({
   return (
     <header className="border-b bg-background/85 backdrop-blur-xl">
       <div className="mx-auto flex h-18 max-w-6xl items-center justify-between px-5 sm:px-8">
-        <BrandMark symbolTone="foreground" />
+        <BrandMark symbolTone="white" />
         <Button type="button" variant="ghost" onClick={onBack}>
           <ArrowLeftIcon data-icon="inline-start" />
           {backLabel}
