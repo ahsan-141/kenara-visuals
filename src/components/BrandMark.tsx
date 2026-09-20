@@ -1,11 +1,17 @@
 import { cn } from '@/lib/utils'
 
-export function BrandMark({ className }: { className?: string }) {
+export function BrandMark({
+  className,
+  symbolTone = 'primary',
+}: {
+  className?: string
+  symbolTone?: 'primary' | 'foreground'
+}) {
   return (
     <span className={cn('inline-flex items-center gap-3', className)}>
       <span
         aria-hidden="true"
-        className="h-9 w-6 shrink-0 bg-primary"
+        className={cn('h-9 w-6 shrink-0', symbolTone === 'foreground' ? 'bg-foreground' : 'bg-primary')}
         style={{
           WebkitMaskImage: "url('/assets/kenara-symbol.webp')",
           WebkitMaskPosition: 'center',
