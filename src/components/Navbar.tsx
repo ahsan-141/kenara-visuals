@@ -35,7 +35,7 @@ export function Navbar({ onPricelist }: { onPricelist: () => void }) {
           aria-label="Kenara Visuals — kembali ke atas"
           className="rounded-lg outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
         >
-          <BrandMark />
+          <BrandMark symbolTone="white" />
         </a>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Navigasi utama">
@@ -68,7 +68,7 @@ export function Navbar({ onPricelist }: { onPricelist: () => void }) {
           </SheetTrigger>
           <SheetContent className="w-[86vw] sm:max-w-sm" side="right">
             <SheetHeader>
-              <BrandMark />
+              <BrandMark symbolTone="white" />
               <SheetTitle className="sr-only">Navigasi Kenara Visuals</SheetTitle>
               <SheetDescription>
                 Wedding & Event Content Creator di Kendari dan Unaaha.

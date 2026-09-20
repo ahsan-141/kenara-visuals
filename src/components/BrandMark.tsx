@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 
 export function BrandMark({
   className,
-  symbolTone = 'primary',
+  symbolTone = 'white',
 }: {
   className?: string
   symbolTone?: 'primary' | 'white'
@@ -11,7 +11,7 @@ export function BrandMark({
     <span className={cn('inline-flex items-center gap-3', className)}>
       <span
         aria-hidden="true"
-        className={cn('h-9 w-6 shrink-0', symbolTone === 'white' ? 'bg-logo-mark' : 'bg-primary')}
+        className={cn('h-9 w-6 shrink-0', symbolTone === 'primary' ? 'bg-primary' : 'bg-white')}
         style={{
           WebkitMaskImage: "url('/assets/kenara-symbol.webp')",
           WebkitMaskPosition: 'center',
