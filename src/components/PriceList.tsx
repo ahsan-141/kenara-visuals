@@ -1,5 +1,5 @@
 import { ArrowUpRightIcon, CheckIcon, Edit3Icon, InfoIcon, MessageCircleIcon, SparklesIcon } from 'lucide-react'
-import { packages } from '@/config/packages'
+import { addOns, packages, serviceArea } from '@/config/packages'
 import { createWhatsAppUrl } from '@/lib/whatsapp'
 import type { LeadData } from '@/types'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -45,13 +45,15 @@ export function PriceList({ lead, onEdit, onHome }: { lead: LeadData; onEdit: ()
       <section className="mx-auto max-w-[86rem] px-5 py-10 sm:px-8 sm:py-14 lg:px-12">
         <Alert className="mx-auto mb-8 max-w-3xl">
           <InfoIcon />
-          <AlertTitle>Harga masih berupa estimasi demo</AlertTitle>
-          <AlertDescription>Harga final dan ketersediaan jadwal akan dikonfirmasi oleh admin Kenara Visuals.</AlertDescription>
+          <AlertTitle>Pricelist Kenara Visuals 2026</AlertTitle>
+          <AlertDescription>
+            Harga berlaku untuk area Kendari & Unaaha. Ketersediaan jadwal akan dikonfirmasi oleh admin.
+          </AlertDescription>
         </Alert>
 
         <div className="grid items-stretch gap-4 lg:grid-cols-3">
           {packages.map((item) => (
-            <Card key={item.name} className={cn('h-full', item.popular && 'ring-primary/70')}>
+            <Card key={item.name} interactive featured={item.popular} className="h-full">
               <CardHeader>
                 <CardTitle className="font-display text-3xl">{item.name}</CardTitle>
                 <CardDescription>{item.description}</CardDescription>
@@ -65,7 +67,7 @@ export function PriceList({ lead, onEdit, onHome }: { lead: LeadData; onEdit: ()
               <CardContent className="flex flex-1 flex-col gap-6">
                 <div className="flex flex-col gap-2">
                   <Badge variant="outline">{item.duration}</Badge>
-                  <p className="text-2xl font-semibold tracking-[-0.02em]">{item.price}</p>
+                  <p className="text-3xl font-semibold tracking-[-0.03em]">{item.price}</p>
                 </div>
                 <Separator />
                 <ul className="flex flex-col gap-3.5">
@@ -76,7 +78,6 @@ export function PriceList({ lead, onEdit, onHome }: { lead: LeadData; onEdit: ()
                     </li>
                   ))}
                 </ul>
-                <p className="mt-auto text-xs text-muted-foreground">Estimasi delivery · {item.delivery}</p>
               </CardContent>
 
               <CardFooter>
@@ -87,11 +88,46 @@ export function PriceList({ lead, onEdit, onHome }: { lead: LeadData; onEdit: ()
                   className={cn(buttonVariants({ variant: item.popular ? 'default' : 'outline', size: 'lg' }), 'w-full')}
                 >
                   Pilih paket ini
-                  <ArrowUpRightIcon data-icon="inline-end" />
+                  <ArrowUpRightIcon
+                    data-icon="inline-end"
+                    className="transition-transform group-hover/card:-translate-y-0.5 group-hover/card:translate-x-0.5"
+                  />
                 </a>
               </CardFooter>
             </Card>
           ))}
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-display text-3xl">Add-on</CardTitle>
+              <CardDescription>Tambahkan layanan sesuai kebutuhan acaramu.</CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-3">
+              {addOns.map((item, index) => (
+                <div key={item.name} className="flex flex-col gap-3">
+                  {index > 0 && <Separator />}
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="text-muted-foreground">{item.name}</span>
+                    <span className="font-semibold">{item.price}</span>
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-display text-3xl">Area layanan</CardTitle>
+              <CardDescription>Berbasis di {serviceArea.base}.</CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-3">
+              <p>{serviceArea.localRate}</p>
+              <Separator />
+              <p className="text-muted-foreground">{serviceArea.travelRate}</p>
+            </CardContent>
+          </Card>
         </div>
 
         <Card className="mt-12 sm:flex-row sm:items-center">

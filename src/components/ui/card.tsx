@@ -4,14 +4,24 @@ import { cn } from "@/lib/utils"
 function Card({
   className,
   size = "default",
+  interactive = false,
+  featured = false,
   ...props
-}: React.ComponentProps<"div"> & { size?: "default" | "sm" }) {
+}: React.ComponentProps<"div"> & {
+  size?: "default" | "sm"
+  interactive?: boolean
+  featured?: boolean
+}) {
   return (
     <div
       data-slot="card"
       data-size={size}
+      data-interactive={interactive}
       className={cn(
         "group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-sm text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
+        interactive &&
+          "transition-[transform,box-shadow,background-color] duration-300 ease-out [&_[data-slot=card-footer]]:transition-colors [&_[data-slot=card-title]]:transition-colors hover:-translate-y-1.5 hover:bg-accent/20 hover:ring-primary/60 hover:shadow-2xl hover:shadow-primary/10 hover:[&_[data-slot=card-footer]]:bg-primary/10 hover:[&_[data-slot=card-title]]:text-primary focus-within:-translate-y-1.5 focus-within:bg-accent/20 focus-within:ring-primary/70 focus-within:shadow-2xl focus-within:shadow-primary/10 focus-within:[&_[data-slot=card-footer]]:bg-primary/10 focus-within:[&_[data-slot=card-title]]:text-primary motion-reduce:hover:translate-y-0 motion-reduce:focus-within:translate-y-0",
+        featured && "ring-primary/70",
         className
       )}
       {...props}
