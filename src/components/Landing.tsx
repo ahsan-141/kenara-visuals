@@ -81,9 +81,9 @@ export function Landing({ onForm }: LandingProps) {
       <Navbar onPricelist={onForm} />
 
       <section className="relative overflow-hidden px-5 pb-20 pt-10 sm:px-8 sm:pb-28 sm:pt-14 lg:px-12 lg:pb-32 lg:pt-20">
-        <div className="pointer-events-none absolute -left-40 top-20 size-[28rem] rounded-full bg-primary/10 blur-3xl" />
+        <div className="ambient-orb pointer-events-none absolute -left-40 top-20 size-[28rem] rounded-full bg-primary/10 blur-3xl" />
         <div className="relative mx-auto grid max-w-[86rem] items-center gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
-          <div className="max-w-2xl">
+          <Reveal className="max-w-2xl" direction="left">
             <Badge variant="outline">
               <MapPinIcon data-icon="inline-start" />
               Kendari · Unaaha
@@ -118,14 +118,18 @@ export function Landing({ onForm }: LandingProps) {
                 </span>
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <div className="grid h-[32rem] grid-cols-[1fr_0.42fr] gap-3 sm:h-[40rem]">
+          <Reveal
+            className="grid h-[32rem] grid-cols-[1fr_0.42fr] gap-3 sm:h-[40rem]"
+            delay={140}
+            direction="right"
+          >
             <figure className="grain relative overflow-hidden rounded-2xl">
               <img
                 src="/assets/hero-wedding.webp"
                 alt="Pasangan pengantin berjalan bersama di suasana resepsi"
-                className="h-full w-full object-cover object-[64%_center]"
+                className="motion-media h-full w-full object-cover object-[64%_center]"
                 width="1920"
                 height="1280"
                 fetchPriority="high"
@@ -146,7 +150,7 @@ export function Landing({ onForm }: LandingProps) {
                 <img
                   src="/assets/portfolio-preparation.webp"
                   alt="Persiapan pengantin sebelum acara"
-                  className="h-full w-full object-cover"
+                  className="motion-media h-full w-full object-cover"
                   width="1000"
                   height="1250"
                 />
@@ -155,35 +159,35 @@ export function Landing({ onForm }: LandingProps) {
                 <img
                   src="/assets/portfolio-detail.webp"
                   alt="Detail tangan pasangan pengantin"
-                  className="h-full w-full object-cover"
+                  className="motion-media h-full w-full object-cover"
                   width="1000"
                   height="1250"
                 />
               </figure>
             </div>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="mx-auto mt-12 max-w-[86rem]">
+        <Reveal className="mx-auto mt-12 max-w-[86rem]" delay={240}>
           <Separator />
-          <div className="grid gap-5 py-6 text-sm text-muted-foreground sm:grid-cols-3">
+          <div className="grid gap-5 py-6 text-sm text-muted-foreground sm:grid-cols-3 sm:[&>p:nth-child(2)]:text-center sm:[&>p:nth-child(3)]:text-right">
             <p><span className="font-medium text-foreground">Capture</span> · momen terjadi</p>
             <p><span className="font-medium text-foreground">Curate</span> · cerita dirangkai</p>
             <p><span className="font-medium text-foreground">Deliver</span> · siap dibagikan</p>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <section id="layanan" className="bg-paper px-5 py-20 text-paper-foreground sm:px-8 sm:py-28 lg:px-12 lg:py-32">
         <div className="mx-auto max-w-[86rem]">
-          <Reveal className="grid gap-7 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-            <div>
+          <Reveal className="grid gap-7 lg:grid-cols-[minmax(0,0.9fr)_minmax(22rem,0.7fr)] lg:items-end">
+            <div className="max-w-3xl">
               <Badge variant="outline">Layanan Kenara</Badge>
-              <h2 className="mt-5 font-display text-5xl leading-[0.92] tracking-[-0.04em] sm:text-7xl">
+              <h2 className="mt-5 font-display text-5xl leading-[0.92] tracking-[-0.04em] text-balance sm:text-7xl">
                 Satu tim untuk momen yang bermakna.
               </h2>
             </div>
-            <p className="max-w-xl text-base leading-7 opacity-65 lg:justify-self-end lg:text-lg">
+            <p className="max-w-xl text-pretty text-base leading-7 opacity-65 lg:justify-self-end lg:text-lg">
               Kami bekerja ringan di balik layar, agar kamu tetap hadir sebagai bagian dari acara—bukan sibuk memikirkan konten.
             </p>
           </Reveal>
@@ -194,24 +198,24 @@ export function Landing({ onForm }: LandingProps) {
                 ? '/assets/portfolio-engagement.webp'
                 : '/assets/portfolio-event.webp'
               return (
-                <Reveal key={service.name}>
-                  <Card className="h-full bg-background text-foreground">
+                <Reveal key={service.name} className="h-full" delay={index * 110}>
+                  <Card className="group h-full bg-background text-foreground [--card-spacing:--spacing(6)]">
                     <img
                       src={image}
                       alt={`Dokumentasi layanan ${service.name} Kenara Visuals`}
                       loading="lazy"
-                      className="h-72 w-full object-cover sm:h-80"
+                      className="motion-media h-72 w-full object-cover sm:h-80"
                       width="1000"
                       height="1250"
                     />
-                    <CardHeader>
+                    <CardHeader className="min-h-36">
                       <CardTitle className="font-display text-4xl">{service.name}</CardTitle>
-                      <CardDescription className="leading-6">{service.description}</CardDescription>
+                      <CardDescription className="max-w-xl text-pretty leading-6">{service.description}</CardDescription>
                       <CardAction>
                         <Badge variant="secondary">0{index + 1}</Badge>
                       </CardAction>
                     </CardHeader>
-                    <CardFooter className="flex-wrap gap-2">
+                    <CardFooter className="mt-auto min-h-20 flex-wrap content-center gap-2">
                       {service.items.map((item) => (
                         <Badge key={item} variant="outline">{item}</Badge>
                       ))}
@@ -235,17 +239,17 @@ export function Landing({ onForm }: LandingProps) {
 
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             {benefits.map((benefit, index) => (
-              <Reveal key={benefit.title}>
-                <Card className="h-full min-h-72">
+              <Reveal key={benefit.title} className="h-full" delay={index * 90}>
+                <Card className="h-full min-h-72 [--card-spacing:--spacing(6)]">
                   <CardHeader>
                     <CardAction><Badge variant="outline">0{index + 1}</Badge></CardAction>
                     <span className="flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground">
                       <benefit.icon strokeWidth={1.6} />
                     </span>
                   </CardHeader>
-                  <CardContent className="mt-auto">
+                  <CardContent className="mt-auto min-h-28">
                     <CardTitle className="text-xl">{benefit.title}</CardTitle>
-                    <CardDescription className="mt-3 leading-6">{benefit.description}</CardDescription>
+                    <CardDescription className="mt-3 text-pretty leading-6">{benefit.description}</CardDescription>
                   </CardContent>
                 </Card>
               </Reveal>
@@ -273,8 +277,8 @@ export function Landing({ onForm }: LandingProps) {
           </Reveal>
 
           <div className="mt-12 grid auto-rows-[15rem] gap-3 sm:auto-rows-[19rem] md:grid-cols-12 md:auto-rows-[10rem]">
-            {portfolio.map((item) => (
-              <Reveal key={item.title} className={cn('h-full', item.className)}>
+            {portfolio.map((item, index) => (
+              <Reveal key={item.title} className={cn('h-full', item.className)} delay={(index % 2) * 90}>
                 <figure className="group relative h-full overflow-hidden rounded-2xl bg-muted">
                   <img
                     src={item.image}
@@ -282,7 +286,7 @@ export function Landing({ onForm }: LandingProps) {
                     loading="lazy"
                     width="1000"
                     height="1250"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    className="motion-media h-full w-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                   <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5">
@@ -302,23 +306,25 @@ export function Landing({ onForm }: LandingProps) {
 
       <section id="proses" className="bg-muted px-5 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-32">
         <div className="mx-auto max-w-[86rem]">
-          <Reveal className="grid gap-6 lg:grid-cols-2 lg:items-end">
-            <div>
+          <Reveal className="grid gap-7 lg:grid-cols-[minmax(0,0.9fr)_minmax(22rem,0.7fr)] lg:items-end">
+            <div className="max-w-3xl">
               <Badge variant="secondary">Proses sederhana</Badge>
               <h2 className="mt-5 font-display text-5xl leading-[0.92] tracking-[-0.04em] sm:text-7xl">Dari Instagram<br />ke percakapan.</h2>
             </div>
-            <p className="max-w-lg text-base leading-7 text-muted-foreground lg:justify-self-end">Tiga langkah singkat untuk membuat konsultasimu lebih cepat dan relevan.</p>
+            <p className="max-w-lg text-pretty text-base leading-7 text-muted-foreground lg:justify-self-end">Tiga langkah singkat untuk membuat konsultasimu lebih cepat dan relevan.</p>
           </Reveal>
 
           <div className="mt-12 grid gap-4 lg:grid-cols-3">
-            {process.map((item) => (
-              <Reveal key={item.step}>
-                <Card className="h-full">
+            {process.map((item, index) => (
+              <Reveal key={item.step} className="h-full" delay={index * 90}>
+                <Card className="h-full min-h-60 [--card-spacing:--spacing(6)]">
                   <CardHeader>
                     <Badge variant="outline">{item.step}</Badge>
-                    <CardTitle className="mt-6 text-xl">{item.title}</CardTitle>
-                    <CardDescription className="leading-6">{item.description}</CardDescription>
                   </CardHeader>
+                  <CardContent className="mt-auto min-h-28">
+                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                    <CardDescription className="mt-3 text-pretty leading-6">{item.description}</CardDescription>
+                  </CardContent>
                 </Card>
               </Reveal>
             ))}
@@ -336,7 +342,7 @@ export function Landing({ onForm }: LandingProps) {
       <section id="area" className="px-5 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-32">
         <Reveal className="mx-auto max-w-[86rem] overflow-hidden rounded-2xl bg-primary p-7 text-primary-foreground sm:p-12 lg:p-16">
           <div className="grid gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
-            <div>
+            <div className="max-w-4xl">
               <Badge variant="secondary">
                 <MapPinIcon data-icon="inline-start" /> Cakupan area
               </Badge>
@@ -359,9 +365,9 @@ export function Landing({ onForm }: LandingProps) {
             <div className="max-w-4xl">
               <Badge variant="outline">Mari bercerita</Badge>
               <h2 className="mt-6 font-display text-balance text-5xl leading-[0.9] tracking-[-0.045em] sm:text-7xl lg:text-8xl">Punya acara dalam waktu dekat?</h2>
-              <p className="mt-6 max-w-xl leading-7 opacity-65">Ceritakan kebutuhanmu dan lihat pilihan paket Kenara Visuals yang tersedia.</p>
+              <p className="mt-6 max-w-xl text-pretty leading-7 opacity-65">Ceritakan kebutuhanmu dan lihat pilihan paket Kenara Visuals yang tersedia.</p>
             </div>
-            <Button onClick={onForm} size="lg">
+            <Button onClick={onForm} size="lg" className="lg:mb-1">
               Dapatkan Pricelist <ArrowUpRightIcon data-icon="inline-end" />
             </Button>
           </div>

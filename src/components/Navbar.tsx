@@ -28,7 +28,7 @@ export function Navbar({ onPricelist }: { onPricelist: () => void }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur-xl">
+    <header className="landing-nav sticky top-0 z-40 border-b bg-background/85 backdrop-blur-xl">
       <div className="mx-auto flex h-18 max-w-[86rem] items-center justify-between px-5 sm:px-8 lg:px-12">
         <a
           href="#top"
